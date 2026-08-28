@@ -64,15 +64,17 @@ form.addEventListener("submit", async (event) => {
     resultTitle.textContent = body.result || (isPlaced ? "Placed" : "Not Placed");
 
     if (body.probability !== undefined && body.probability !== null) {
-      const probability = Number(body.probability);
-      const percentage  = probability <= 1 ? probability * 100 : probability;
-      resultText.textContent =
-        `The model predicts that the student is likely to be ${isPlaced ? "placed" : "not placed"} ` +
-        `with an estimated probability of ${percentage.toFixed(2)}%.`;
-    } else {
-      resultText.textContent =
-        `The model predicts that the student is likely to be ${isPlaced ? "placed" : "not placed"}.`;
-    }
+  // Backend returns { placed: 87.5, not_placed: 12.5 }
+  const percentage = isPlaced
+    ? body.probability.placed
+    : body.probability.not_placed;
+  resultText.textContent =
+    `The model predicts that the student is likely to be ${isPlaced ? "placed" : "not placed"} ` +
+    `with an estimated probability of ${Number(percentage).toFixed(2)}%.`;
+} else {
+  resultText.textContent =
+    `The model predicts that the student is likely to be ${isPlaced ? "placed" : "not placed"}.`;
+}
 
     resultIcon.textContent = isPlaced ? "✓" : "×";
     resultIcon.classList.add(isPlaced ? "result-icon--placed" : "result-icon--not-placed");
