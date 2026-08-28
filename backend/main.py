@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
 import os
@@ -70,26 +70,26 @@ except Exception as e:
 # ============================================================
 
 class PlacementInput(BaseModel):
+    model_config = {"populate_by_name": True}
 
     gender: str
 
-    tenth_percent: float
-    tenth_board: str
+    tenth_percent: float = Field(alias="10th_percent")
+    tenth_board: str     = Field(alias="10th_board")
 
-    twelfth_percent: float
-    twelfth_board: str
-    twelfth_stream: str
+    twelfth_percent: float = Field(alias="12th_percent")
+    twelfth_board: str     = Field(alias="12th_board")
+    twelfth_stream: str    = Field(alias="12th_stream")
 
     degree_percent: float
     degree: str
 
     experience: str
 
-    employment_test_percent: float
+    employment_test_percent: float = Field(alias="emp_test_percent")
 
     mba_stream: str
     mba_percent: float
-
 
 # ============================================================
 # FEATURE ENGINEERING
