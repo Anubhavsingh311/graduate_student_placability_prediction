@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graduate Student Placability Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="hero animate-rise" style="animation-delay: 0.05s">
+      <span class="badge">ML Placement Prediction</span>
+      <h1>Graduate Student<br><span class="hero-accent">Placability Prediction</span></h1>
+      <p class="hero-desc">Enter the student's academic and professional details to predict placement status using the trained Logistic Regression model.</p>
+    </header>
+
+    <main class="card animate-rise" style="animation-delay: 0.2s">
+      <form id="predictionForm">
+
+        <section class="form-section">
+          <div class="section-header">
+            <span class="section-index">01</span>
+            <h2 class="section-title">Personal Details</h2>
+          </div>
+          <div class="grid">
+            <label class="field-label">
+              Gender
+              <select id="gender" name="gender" class="field-input" required>
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-header">
+            <span class="section-index">02</span>
+            <h2 class="section-title">10th / School Education</h2>
+          </div>
+          <div class="grid">
+            <label class="field-label">
+              10th Percentage
+              <input type="number" id="10th_percent" name="10th_percent" class="field-input" min="0" max="100" step="0.01" required>
+            </label>
+            <label class="field-label">
+              10th Board
+              <input type="text" id="10th_board" name="10th_board" class="field-input" placeholder="e.g. Central Board" required>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-header">
+            <span class="section-index">03</span>
+            <h2 class="section-title">12th / Higher Secondary Education</h2>
+          </div>
+          <div class="grid">
+            <label class="field-label">
+              12th Percentage
+              <input type="number" id="12th_percent" name="12th_percent" class="field-input" min="0" max="100" step="0.01" required>
+            </label>
+            <label class="field-label">
+              12th Board
+              <input type="text" id="12th_board" name="12th_board" class="field-input" placeholder="e.g. Central Board" required>
+            </label>
+            <label class="field-label">
+              12th Stream
+              <select id="12th_stream" name="12th_stream" class="field-input" required>
+                <option value="">Select stream</option>
+                <option value="Science">Science</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Arts">Arts</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-header">
+            <span class="section-index">04</span>
+            <h2 class="section-title">Degree Details</h2>
+          </div>
+          <div class="grid">
+            <label class="field-label">
+              Degree Percentage
+              <input type="number" id="degree_percent" name="degree_percent" class="field-input" min="0" max="100" step="0.01" required>
+            </label>
+            <label class="field-label">
+              Degree
+              <input type="text" id="degree" name="degree" class="field-input" placeholder="e.g. B.Tech, BCA, BBA" required>
+            </label>
+            <label class="field-label">
+              Work Experience
+              <select id="experience" name="experience" class="field-input" required>
+                <option value="">Select experience</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </label>
+            <label class="field-label">
+              Employability Test Percentage
+              <input type="number" id="emp_test_percent" name="emp_test_percent" class="field-input" min="0" max="100" step="0.01" required>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section form-section--last">
+          <div class="section-header">
+            <span class="section-index">05</span>
+            <h2 class="section-title">MBA Details</h2>
+          </div>
+          <div class="grid">
+            <label class="field-label">
+              MBA Stream
+              <input type="text" id="mba_stream" name="mba_stream" class="field-input" placeholder="e.g. Marketing & Finance" required>
+            </label>
+            <label class="field-label">
+              MBA Percentage
+              <input type="number" id="mba_percent" name="mba_percent" class="field-input" min="0" max="100" step="0.01" required>
+            </label>
+          </div>
+        </section>
+
+        <div class="submit-area">
+          <button type="submit" id="predictBtn" class="submit-btn">
+            Predict Placement
+          </button>
+          <p id="status" class="status-error" style="display:none;"></p>
+        </div>
+      </form>
+
+      <div id="result" class="result" style="display:none;">
+        <div class="result-icon" id="resultIcon">✓</div>
+        <div class="result-body">
+          <p class="result-label">Prediction</p>
+          <h2 class="result-title" id="resultTitle">Placed</h2>
+          <p class="result-text" id="resultText"></p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
