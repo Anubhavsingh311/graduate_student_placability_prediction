@@ -1,5 +1,6 @@
 fastapi
 gunicorn
+uvicorn[standard]
 pydantic
 pandas
 numpy
