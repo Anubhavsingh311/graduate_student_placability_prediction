@@ -36,17 +36,9 @@ app.add_middleware(
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MODEL_PATH = os.path.join(
-    BASE_DIR,
-    "models",
-    "logistic_regression.pkl"
-)
-
-FEATURE_COLUMNS_PATH = os.path.join(
-    BASE_DIR,
-    "models",
-    "feature_columns.pkl"
-)
+# Fix path: "models" → "model"
+MODEL_PATH = os.path.join(BASE_DIR, "model", "logistic_regression.pkl")
+FEATURE_COLUMNS_PATH = os.path.join(BASE_DIR, "model", "feature_columns.pkl")
 
 
 # ============================================================
